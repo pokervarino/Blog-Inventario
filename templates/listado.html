@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block headtitle %}{{title}}|{{block.super}}{% endblock%}
+{% block content %}
+<div class="container">
+<div class="panel panel-default">
+	<div class="panel-heading">Listado de Ciudad</div>
+	<table class="table">
+		<thead>
+			<tr>
+			<td>#</td>
+			<td>Nombre Ciudad</td>
+			</tr>
+		</thead>
+		{% if object_list %}
+		<tbody>
+			{% for list in object_list %}
+				<tr>
+					<td>{{list.id}}</td>
+					<td>{{list.nombreCiudad}}</td>
+					<td><a href="{% url 'inventarios:editar' list.id%}" type="button" class="btn btn-warning btn-xs" role="button" >Editar</a>
+					<button type="button" class="btn btn-danger btn-xs">Eliminar</button></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+			{% else %}
+			<h2>No hay elementos</h2>
+		{% endif %}
+	</table>
+</div>
+</div>
+{% endblock %}

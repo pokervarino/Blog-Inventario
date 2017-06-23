@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block head_title %}{{title}}|{{block.super}}{%endblock%}
+{% block content%}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				{% if instance.image %}
+					<img src="{{instance.image.url}}" class="img-responsive" />
+				{% endif %}
+				<h1>{{title}}</h1>
+				<p>Autor: {{instance.user}}</p>
+				<!-- <div class="post-detail-item">  -->
+					{{instance.get_markdown}}
+				<!-- </div> -->
+			</div>
+		</div>
+		<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" 		data-action="like" data-size="small" data-show-faces="false" data-share="true">
+		</div>
+	</div>
+{% endblock %}
+{% block footer %}
+<div class="container">
+	<div class="fb-comments" data-href="{{request.build_absolute_uri}}" data-numposts="5" align="right"></div>
+</div>
+{% endblock %}

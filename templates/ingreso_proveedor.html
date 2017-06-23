@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block headtitle %} {{title}}|{{block.super}}{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+	<h3>Ingreso de Proveedor </h3>
+	<form method="POST" action=""enctype='multipart/form-data'>{% csrf_token %}
+		{{form.as_p}}
+
+	<input type="submit" class="btn btn-default" value="Agregar"/>
+	</form>
+	</div>
+</div>
+<div class="container">
+<hr/>
+<div class="panel panel-default">
+	<div class="panel-heading">Listado de Proveedores</div>
+	<table class="table">
+		<thead>
+			<tr>
+			<td>#</td>
+			<td>Nombre Proveedor</td>
+			<td>Direccion</td>
+			<td>Telefono</td>
+			<td>Ciudad</td>
+			<td>Opciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for prov in lista_proveedor %}
+				<tr>
+					<td>{{prov.id}}</td>
+					<td>{{prov.nombreProveedor}}</td>
+					<td>{{prov.direccionProveedor}}</td>
+					<td>{{prov.telefonoProveedor}}</td>
+					<td>{{prov.ciudad.nombreCiudad}}</td>
+					<td><a href="{% url 'inventarios:proveedor_editar' prov.id%}" type="button" class="btn btn-warning btn-xs" role="button" >Editar</a>
+					<a href="{% url 'inventarios:proveedor_eliminar' prov.id%}" type="button" class="btn btn-danger btn-xs" role="button" >Eliminar</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+</div>
+{% endblock %}

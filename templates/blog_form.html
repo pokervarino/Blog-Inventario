@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+{% load crispy_forms_tags %}
+{% block extrahead%}{{form.media}}{% endblock%}
+{% block head_title %}{{title}}|{{block.super}}{%endblock%}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<h1 align="center">Formulario</h1>
+				<hr/>
+				<form method="POST" action=''enctype='multipart/form-data'>{% csrf_token %}{{form|crispy}}
+				<br/>
+				<input type="submit" class="btn btn-default" value="Publicar"/>
+				</form>
+			</div>
+			<div class="col-md-5-offset">
+				<h1 align="center">Vista Previa</h1>
+				<hr/>
+				<div class="content-preview">
+					<p align="center">Titulo</p>
+					<h3 id="preview-title" align="center"> </h3>
+					<p id="preview-content" align="center"> </p>					
+			</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

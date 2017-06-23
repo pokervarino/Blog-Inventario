@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block headtitle %}{{title}}|{{block.super}}{% endblock%}
+{% block content %}
+<table class="table">
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Producto</td>
+				<td>Stock</td>
+				<td>Precio Costo </td>
+				<td>Precio Venta </td>
+				<td>Proveedor</td>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for list in object_list %}
+			<tr>
+				<td>{{list.id}}</td>
+				<td>{{list.nombreProducto}}</td>
+				<td>{{list.stockProducto}}</td>
+				<td>{{list.precioCostoProducto}}</td>
+				<td>{{list.precioVentaProducto}}</td>
+				<td>{{list.proveedor}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+{% endblock %}

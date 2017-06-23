@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block extrahead %}{% endblock %}
+{% block headtitle %}{{title}}|{{block.super}}
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row" >
+		<div class='col-md-5'>
+		<h1>Formulario de Ingreso</h1>
+		<form method="POST" action=""enctype='multipart/form-data'>
+			{% csrf_token %}
+			<form class="form-inline">
+				<div  class="container">
+				<table id="contenido">
+					<tr>
+						<td><label for="{{form.nombreProducto.name}}">{{form.nombreProducto.label}}</label></td>
+						<td>{{form.nombreProducto}}</td>
+					</tr>
+					<tr>
+						<td><label for="{{form.stockProducto.name}}">{{form.stockProducto.label}}</label></td>
+						<td>{{form.stockProducto}}</td>
+					</tr>
+					<tr>
+						<td><label for="{{form.precioCostoProducto.name}}">{{form.precioCostoProducto.label}}</label></td>
+						<td>{{form.precioCostoProducto}}</td>
+					</tr>
+					<tr>
+						<td><label for="{{form.precioVentaProducto.name}}">{{form.precioVentaProducto.label}}</label></td>
+						<td>{{form.precioVentaProducto}}</td>
+					</tr>
+					<tr>
+						<td><label for="{{form.proveedor.name}}">{{form.proveedor.label}}</label></td>
+						<td>{{form.proveedor}}</td>
+					</tr>
+				</table>
+				</div>
+				<hr/>
+				<input type="submit" class="btn btn-default" value="Agregar"/>
+			</form>
+		</form>
+
+	</div>
+	<hr/>
+	<br/>
+	<table class="table">
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Producto</td>
+				<td>Stock</td>
+				<td>Precio Costo </td>
+				<td>Precio Venta </td>
+				<td>Proveedor</td>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for list in producto_list %}
+			<tr>
+				<td>{{list.id}}</td>
+				<td>{{list.nombreProducto}}</td>
+				<td>{{list.stockProducto}}</td>
+				<td>{{list.precioCostoProducto}}</td>
+				<td>{{list.precioVentaProducto}}</td>
+				<td>{{list.proveedor}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+</div>
+{% endblock %}
+
+
